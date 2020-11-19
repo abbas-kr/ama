@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="224" height="124.324" viewBox="0 0 224 124.324">
+  <g id="_404-background" data-name="404-background" transform="translate(-95 -219.676)">
+    <rect id="Rectangle_427" data-name="Rectangle 427" width="165" height="24" rx="12" transform="translate(141 319)" fill="#f94e60" opacity="0.15"/>
+    <rect id="Rectangle_428" data-name="Rectangle 428" width="165" height="24" rx="12" transform="translate(124 292)" fill="#f94e60" opacity="0.15"/>
+    <rect id="Rectangle_429" data-name="Rectangle 429" width="165" height="24" rx="12" transform="translate(154 265)" fill="#f94e60" opacity="0.15"/>
+    <rect id="Rectangle_430" data-name="Rectangle 430" width="165" height="24" rx="12" transform="translate(95 238)" fill="#f94e60" opacity="0.15"/>
+    <g id="Ellipse_66" data-name="Ellipse 66" transform="translate(303 263)" fill="none" stroke="#f94e60" stroke-width="1">
+      <circle cx="6" cy="6" r="6" stroke="none"/>
+      <circle cx="6" cy="6" r="5.5" fill="none"/>
+    </g>
+    <path id="plus" d="M8.758,67.913H5.031V64.186A.186.186,0,0,0,4.845,64H4.1a.186.186,0,0,0-.186.186v3.727H.186A.186.186,0,0,0,0,68.1v.745a.186.186,0,0,0,.186.186H3.913v3.727a.186.186,0,0,0,.186.186h.745a.186.186,0,0,0,.186-.186V69.031H8.758a.186.186,0,0,0,.186-.186V68.1A.186.186,0,0,0,8.758,67.913Z" transform="translate(255.255 174.421) rotate(45)" fill="#f94e60"/>
+    <path id="plus-2" data-name="plus" d="M8.758,67.913H5.031V64.186A.186.186,0,0,0,4.845,64H4.1a.186.186,0,0,0-.186.186v3.727H.186A.186.186,0,0,0,0,68.1v.745a.186.186,0,0,0,.186.186H3.913v3.727a.186.186,0,0,0,.186.186h.745a.186.186,0,0,0,.186-.186V69.031H8.758a.186.186,0,0,0,.186-.186V68.1A.186.186,0,0,0,8.758,67.913Z" transform="translate(168.255 222.421) rotate(45)" fill="#f94e60"/>
+    <path id="plus-3" data-name="plus" d="M8.758,67.913H5.031V64.186A.186.186,0,0,0,4.845,64H4.1a.186.186,0,0,0-.186.186v3.727H.186A.186.186,0,0,0,0,68.1v.745a.186.186,0,0,0,.186.186H3.913v3.727a.186.186,0,0,0,.186.186h.745a.186.186,0,0,0,.186-.186V69.031H8.758a.186.186,0,0,0,.186-.186V68.1A.186.186,0,0,0,8.758,67.913Z" transform="translate(342.255 258.421) rotate(45)" fill="#f94e60"/>
+    <g id="Ellipse_67" data-name="Ellipse 67" transform="translate(111 237)" fill="none" stroke="#f94e60" stroke-width="1">
+      <circle cx="6" cy="6" r="6" stroke="none"/>
+      <circle cx="6" cy="6" r="5.5" fill="none"/>
+    </g>
+    <g id="Ellipse_68" data-name="Ellipse 68" transform="translate(134 315)" fill="none" stroke="#f94e60" stroke-width="1">
+      <circle cx="6" cy="6" r="6" stroke="none"/>
+      <circle cx="6" cy="6" r="5.5" fill="none"/>
+    </g>
+    <path id="map-signs" d="M57.232,24.9a3.78,3.78,0,0,0,2.934-1.52l5.616-7.02a3.071,3.071,0,0,0,0-3.668l-5.616-7.02a3.781,3.781,0,0,0-2.934-1.518H35.271V1.037A1.037,1.037,0,0,0,34.234,0H32.159a1.037,1.037,0,0,0-1.037,1.037V4.149H7.263c-1.718,0-3.112,1.741-3.112,3.89V21.006c0,2.149,1.394,3.89,3.112,3.89H31.122v4.149H9.16a3.781,3.781,0,0,0-2.934,1.518L.61,37.585a3.071,3.071,0,0,0,0,3.668l5.616,7.019a3.782,3.782,0,0,0,2.934,1.52H31.122v15.56a1.037,1.037,0,0,0,1.037,1.037h2.075a1.037,1.037,0,0,0,1.037-1.037V49.791H59.129c1.718,0,3.112-1.741,3.112-3.89V32.935c0-2.149-1.394-3.89-3.112-3.89H35.271V24.9Zm.827,20.746H9.435L4.456,39.418l4.986-6.224H58.091ZM8.333,8.3H56.957l4.979,6.224-4.986,6.224H8.3Z" transform="translate(173.801 246.806)" fill="#f94e60"/>
+    <text id="_404" data-name="404" transform="translate(221 337)" fill="#f94e60" font-size="16" font-family="IRANYekanWebFn-Bold, IRANYekanWebFn" font-weight="700"><tspan x="-27.745" y="0">404</tspan></text>
+  </g>
+</svg>
