@@ -34,11 +34,11 @@ $products = new WP_Query( $featured_args );
 <?php if ( $products->have_posts() ) { ?>
 <section>
     <header class="ngr-eleman-title">
-        <div class="ngr-eleman-title"><span>محصولات</span>ویژه
+        <div class="ngr-eleman-title"><span>محصولات<strong>ویژه</strong></span>
         </div>
     </header>
-    <div class="feature-hscroll-product feature-swiper-container">
-        <div class="feature-hscroll-product-slider swiper-wrapper">
+    <div class="hscroll-product swiper-container" data-slidePerView="1.8">
+        <div class="hscroll-product-slider swiper-wrapper">
 
             <?php while ( $products->have_posts() ) : $products->the_post(); global $product; ?>
 

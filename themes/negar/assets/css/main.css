@@ -4591,10 +4591,6 @@ input:invalid, textarea:invalid {
 
 .title-intro a, .tcw_table_price .list-link a, .ngr-eleman-title .list-link {
     font-size: 30px;
-    line-height: 45px;
-    padding: 0 5px;
-    position: absolute;
-    left: 10px;
 }
 
 .title-intro a {
@@ -9421,19 +9417,33 @@ td.tm-woocompare-cell .button {
 }
 
 .ngr-eleman-title {
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin: 30px 10px 10px;
     font-size: 15px;
     color: var(--text-light);
-    margin-right: 10px;
     font-weight: 700;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
 }
 
 .ngr-eleman-title span {
-    color: var(--primary);
+    color: var(--text-light);
     margin-left: 6px;
-    display: inline-block
+    display: inline-block;
+    line-height: 2.2;
+}
+
+.ngr-eleman-title .best-product-counter{
+    color: var(--primary);
+}
+
+header.ngr-eleman-titles span {
+    color: var(--text-light);
+}
+header.ngr-eleman-titles {
+    color: var(--primary);
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .single-product .woocommerce-notices-wrapper {
@@ -9602,7 +9612,7 @@ form.woocommerce-ResetPassword.lost_reset_password {
 }
 
 .svg-slider .swiper-wrapper {
-    max-height: 135px
+    max-height: 135px;
 }
 
 #notifierModal.show .modal-title {
@@ -11001,7 +11011,7 @@ span.topbox-best-product {
     font-size: 35px;
 }
 
-.hscroll-product-slider .swiper-slide-active {
+.best-slider-swiper .swiper-slide-active {
     box-shadow: -20px 7px 30px 0px rgba(0, 0, 0, 0.16);
 }
 
@@ -11122,4 +11132,17 @@ nav.woocommerce-MyAccount-navigation .woocommerce-MyAccount-navigation-link--cus
 .image-banner-slider-wavy .swiper-slide .negar-svg svg:nth-child(2) {
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.swiper-wrapper {
+    margin: 15px 10px;
+}
+
+.ngr_slider .swiper-wrapper {
+    margin: 0;
+}
+
+header.ngr-eleman-title strong {
+    display: inline-block;
+    margin-right: 5px;
 }

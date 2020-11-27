@@ -4,7 +4,7 @@
 $avn_option = getSetting();
 ?>
 <section>
-    <div class="svg-slider svg-swiper-container">
+    <div class="svg-slider swiper-container" data-slidePerView="2.7">
         <div class="swiper-wrapper">
             <?php
             foreach ($avn_option['svg_slider'] as $slider) {

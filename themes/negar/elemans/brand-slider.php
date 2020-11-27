@@ -8,9 +8,9 @@ $brands = get_terms(array(
 
 if (taxonomy_exists('product_brand') && !empty($brands)) { ?>
 <section>
-    <header class="ngr-eleman-title"><span>برندهای</span>محصولات</header>
-    <div class="brand-swiper-container swiper-init" data-auto-height="true" data-free-mode="true"
-         data-slides-per-view="auto">
+    <header class="ngr-eleman-title"><span>برندهای<strong>محصولات</strong></span></header>
+    <div class="brand-swiper-container swiper-container swiper-init" data-auto-height="true" data-free-mode="true"
+         data-slides-per-view="auto" data-slidePerView="1.8" data-autoplaydelay="5000">
         <div class="swiper-wrapper">
 
             <?php foreach ($brands as $brand) { ?>

@@ -28,17 +28,16 @@ if ($products->have_posts()) { ?>
         <header class="ngr-eleman-title">
             <?php
             $titles = strpos($category_name, ' ');
-            $title = ($titles !== false) ? '<span>' . substr($category_name, 0, $titles) . '</span>' . ' ' . substr($category_name, $titles + 1) : $category_name;
-            echo '<h2>' . $title;
+            $title = ($titles !== false) ? '<span>' . substr($category_name, 0, $titles) . '<strong>' . substr($category_name, $titles + 1) : $category_name .'</strong>';
+            echo $title . '</span>';
             ?>
             <a class="list-link" href="<?php echo get_category_link($category) ?>">
                 <i class="fal fa-ellipsis-h"></i>
             </a>
-            </h2>
         </header>
 
 
-        <div class="hscroll-product swiper-container">
+        <div class="hscroll-product swiper-container" data-slidePerView="1.8">
             <div class="hscroll-product-slider swiper-wrapper">
                 <?php while ($products->have_posts()) : $products->the_post();
                     global $product; ?>
