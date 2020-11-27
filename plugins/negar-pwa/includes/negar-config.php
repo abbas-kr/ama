@@ -494,6 +494,17 @@ Redux::setSection( $opt_name, array(
             'type'    => 'switch',
             'title'   => 'پیش بارگذار',
             'default' => true,
+        ),array(
+            'id'      => 'pre_loader_layout',
+            'type'    => 'select',
+            'title'   => 'پیش بارگذار',
+            'options'  =>array(
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5',
+            ),
+            'default' => true,
         ),
         array(
             'id'      => 'clean_head',

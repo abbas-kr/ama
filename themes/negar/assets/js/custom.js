@@ -6,7 +6,7 @@
     var headerArea = $("#headerArea");
     var footerNav = $("#footerNav");
     var blackOverlay = $(".sidenav-black-overlay");
-    
+
     // :: 1.0 Preloader
     suhaWindow.on('load', function () {
         $('#preloader').fadeOut('1000', function () {
@@ -372,6 +372,17 @@ jQuery(document).ready(function ($) {
         });
 
     })
+
+
+
+     $(".c-compare__placement").on('touchstart','#addNewProductModal', function(){
+         $("#addNewProductModal").addClass("show");
+     });
+     $(".c-compare__btn-remove").on('touchstart','#addNewProductModal', function(){
+         $("#addNewProductModal").removeClass("show");
+     });
+
+
 
 
 

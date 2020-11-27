@@ -3,10 +3,19 @@
 }
 global $avn_negar;
 
-if ($avn_negar['pre_loader']=='1'){ ?>
+if ($avn_negar['pre_loader']=='1'){?>
     <!-- Preloader-->
     <div class="preloader" id="preloader">
-        <div id="ngr-preloader"></div>
+   <?php  if($avn_negar['pre_loader_layout']=='1'){ ?>
+        <div id="ngr-preloader">
+        </div>
+        <?php } else{ ?>
+        <div>
+            <?php
+            get_template_part( 'template-part/preload/layout',$avn_negar['pre_loader_layout'] );
+            ?>
+        </div>
+        <?php } ?>
     </div>
 <?php } ?>
 
