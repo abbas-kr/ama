@@ -11,6 +11,7 @@
 
 <?php
 $avn_option = getSetting();
+$i=1;
 
 // Best Sellers
 $best_sellers_args = array(
@@ -25,11 +26,10 @@ $products = new WP_Query( $best_sellers_args );
 
 
 <?php if ( $products->have_posts() ) { ?>
-    <div class="ngr-eleman-title"><span>پرفروش ترین</span>محصولات
-        <a class="list-link" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ).'?orderby=date' ?>">
-            <i class="fal fa-ellipsis-h"></i>
-        </a>
-    </div>
+<section class="relative-box">
+    <header class="ngr-eleman-title"><span class="best-product-counter"><?php echo $avn_option['count_product_per_page'] ?></span> محصول پرفروش
+        <span class="topbox-best-product"></span>
+    </header>
     <div class="hscroll-product swiper-container">
         <div class="hscroll-product-slider swiper-wrapper">
 
@@ -38,6 +38,7 @@ $products = new WP_Query( $best_sellers_args );
                 <div class="swiper-slide">
                     <div <?php wc_product_class( '', $product ); ?>>
                         <?php
+                        echo '<span class="count">'. $i .'</span>';
                         /**
                          * Hook: woocommerce_before_shop_loop_item.
                          *
@@ -75,6 +76,7 @@ $products = new WP_Query( $best_sellers_args );
                          * @hooked woocommerce_template_loop_add_to_cart - 10
                          */
                         do_action( 'woocommerce_after_shop_loop_item' );
+                        $i++;
                         ?>
                     </div>
                 </div>
@@ -82,4 +84,5 @@ $products = new WP_Query( $best_sellers_args );
 
         </div>
     </div>
+</section>
 <?php } wp_reset_postdata(); ?>

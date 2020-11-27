@@ -7,7 +7,8 @@ $brands = get_terms(array(
 
 
 if (taxonomy_exists('product_brand') && !empty($brands)) { ?>
-    <div class="ngr-eleman-title"><span>برندهای</span>محصولات</div>
+<section>
+    <header class="ngr-eleman-title"><span>برندهای</span>محصولات</header>
     <div class="brand-swiper-container swiper-init" data-auto-height="true" data-free-mode="true"
          data-slides-per-view="auto">
         <div class="swiper-wrapper">
@@ -37,5 +38,6 @@ if (taxonomy_exists('product_brand') && !empty($brands)) { ?>
 
         </div>
     </div>
+</section>
 
 <?php } ?>

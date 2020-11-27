@@ -26,7 +26,8 @@ $id = 'sw_countdown_' . rand() . time();
 ?>
 
 <?php if ($products->have_posts()) { ?>
-    <div class="ngr-eleman-title"><span>پیشنهاد</span>شگفت انگیز</div>
+<section>
+    <header class="ngr-eleman-title"><span>پیشنهاد</span>شگفت انگیز</header>
     <div class="timer-product-slider swiper-container">
         <div class="swiper-wrapper">
 
@@ -99,6 +100,6 @@ $id = 'sw_countdown_' . rand() . time();
 
         </div>
     </div>
-
+</section>
 <?php }
 wp_reset_postdata(); ?>

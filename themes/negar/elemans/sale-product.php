@@ -29,7 +29,8 @@ $products = new WP_Query( $sale_args );
 
 
 <?php if ( $products->have_posts() ) { ?>
-    <div class="ngr-eleman-title"><span>محصولات</span>تخفیف خورده</div>
+<section>
+    <header class="ngr-eleman-title"><span>محصولات</span>تخفیف خورده</header>
     <div class="hscroll-product swiper-container">
         <div class="hscroll-product-slider swiper-wrapper">
             <?php while ( $products->have_posts() ) : $products->the_post(); global $product; ?>
@@ -80,4 +81,5 @@ $products = new WP_Query( $sale_args );
                 <?php $total++; endwhile; ?>
         </div>
     </div>
+</section>
 <?php } wp_reset_postdata(); ?>

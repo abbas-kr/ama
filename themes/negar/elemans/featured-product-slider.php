@@ -32,12 +32,13 @@ $products = new WP_Query( $featured_args );
 
 
 <?php if ( $products->have_posts() ) { ?>
-    <div class="ngr-eleman-title">
+<section>
+    <header class="ngr-eleman-title">
         <div class="ngr-eleman-title"><span>محصولات</span>ویژه
         </div>
-    </div>
-    <div class="hscroll-product swiper-container">
-        <div class="hscroll-product-slider swiper-wrapper">
+    </header>
+    <div class="feature-hscroll-product feature-swiper-container">
+        <div class="feature-hscroll-product-slider swiper-wrapper">
 
             <?php while ( $products->have_posts() ) : $products->the_post(); global $product; ?>
 
@@ -88,4 +89,5 @@ $products = new WP_Query( $featured_args );
 
         </div>
     </div>
+</section>
 <?php } wp_reset_postdata(); ?>

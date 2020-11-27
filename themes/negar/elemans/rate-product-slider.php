@@ -25,11 +25,12 @@ $products = new WP_Query( $best_sellers_args );
 
 
 <?php if ( $products->have_posts() ) { ?>
-    <div class="ngr-eleman-title"><span>محبوب ترین</span>محصولات
-        <a class="list-link" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ).'?orderby=date' ?>">
+<section>
+    <header class="ngr-eleman-title"><span>محبوب ترین</span>محصولات
+        <a class="list-link" href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ).'?orderby=date' ?>">
             <i class="fal fa-ellipsis-h"></i>
         </a>
-    </div>
+    </header>
     <div class="hscroll-product swiper-container">
         <div class="hscroll-product-slider swiper-wrapper">
 
@@ -82,4 +83,5 @@ $products = new WP_Query( $best_sellers_args );
 
         </div>
     </div>
+</section>
 <?php } wp_reset_postdata(); ?>

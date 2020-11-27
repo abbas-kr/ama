@@ -139,7 +139,6 @@
                         jQuery('.redux_ajax_save_error').slideDown();
                         jQuery("html, body").animate({scrollTop: 0}, "slow");
                     }
-
                 }
             }
         );

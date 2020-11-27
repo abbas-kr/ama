@@ -31,13 +31,15 @@ $products = new WP_Query( $new_args );
 
 
 <?php if ( $products->have_posts() ) { ?>
-    <div class="ngr-eleman-title">
+<section>
+    <header class="ngr-eleman-title">
         <div class="ngr-eleman-title"><span>جدیدترین</span>محصولات
-            <a class="list-link" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ).'?orderby=date' ?>">
+            <a class="list-link" href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ).'?orderby=date' ?>">
                 <i class="fal fa-ellipsis-h"></i>
             </a>
         </div>
-    </div>
+    </header>
+
     <div class="hscroll-product swiper-container">
         <div class="hscroll-product-slider swiper-wrapper">
 
@@ -90,4 +92,5 @@ $products = new WP_Query( $new_args );
 
         </div>
     </div>
+</section>
 <?php } wp_reset_postdata(); ?>

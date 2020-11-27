@@ -6,7 +6,8 @@ $categories = get_terms(array(
     'parent' => '0'
 ));
 if (!empty($categories)) { ?>
-    <div class="ngr-eleman-title"><span>دسته بندی</span>محصولات</div>
+<section>
+    <header class="ngr-eleman-title"><span>دسته بندی</span>محصولات</header>
     <div class="hscroll-category-product category-swiper-container">
         <div class="swiper-wrapper">
             <?php foreach ($categories as $category) { ?>
@@ -36,6 +37,7 @@ if (!empty($categories)) { ?>
 
         </div>
     </div>
+</section>
 
 <?php } ?>
 

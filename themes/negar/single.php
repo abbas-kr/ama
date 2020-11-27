@@ -8,6 +8,20 @@ get_header(); ?>
         <div class="content-block mt-0 bg-white block-shadow">
             <div class="content-block-inner">
 
+                <header>
+                    <span class="entry-date pull-right">
+						<span class="post_my"><?php the_time( 'Y' ); ?></span>
+						<span class="post_day custom-font"><?php the_time( 'd' ); ?></span>
+						<span class="post_year custom-font"><?php the_time( 'F' ); ?></span>
+                    </span>
+                    <?php
+                    the_title( sprintf( '<h1>', esc_url( get_permalink() ) ), '</h1>' );
+                    ?>
+                    <a href="<?= get_home_url() ?>"><i class="far fa-chevron-left"></i></a>
+
+
+                </header><!-- .entry-header -->
+
                 <div class="image-single-post">
                     <div></div>
 					<?php if ( get_the_post_thumbnail() ) { ?>
@@ -15,23 +29,19 @@ get_header(); ?>
 					<?php } ?>
                 </div>
 
-               
-
 				<?php
 
-				while ( have_posts() ) : the_post();
+                while ( have_posts() ) : the_post();
 
 					?>
                     <div class="entry-content">
-					 <header>
-						<?php
-						the_title( sprintf( '<h1>', esc_url( get_permalink() ) ), '</h1>' );
-						?>
-						<span class="entry-date pull-right">
-						<span class="post_my"><?php the_time( 'Y' ); ?></span>
-						<span class="post_day custom-font"><?php the_time( 'F d' ); ?></span>
 
-					</header><!-- .entry-header -->
+                        <div class="icons-buttons-down">
+                            <a href="<?php echo get_comments_link($post->ID); ?>"><?php echo $post->comment_count; ?> <i class="fal fa-comment-alt"></i></a>
+                            <?= gt_get_post_view(); ?>
+                            <i class="fal fa-share-alt"></i>
+                        </div>
+
 						<?php
 						the_content();
 						?>

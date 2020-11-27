@@ -1,7 +1,7 @@
 <?php if (!defined('ABSPATH')) exit;
 $avn_option = getSetting();
 ?>
-<div class="full-banner">
+<section class="full-banner">
     <?php
     foreach ($avn_option['banners_full'] as $banner) {
         if ($banner['attachment_id'] == $theId) {
@@ -13,4 +13,4 @@ $avn_option = getSetting();
         }
     }
     ?>
-</div>
+</section>

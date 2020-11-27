@@ -6,7 +6,7 @@
     var headerArea = $("#headerArea");
     var footerNav = $("#footerNav");
     var blackOverlay = $(".sidenav-black-overlay");
-
+    
     // :: 1.0 Preloader
     suhaWindow.on('load', function () {
         $('#preloader').fadeOut('1000', function () {
@@ -97,6 +97,28 @@ jQuery(document).ready(function ($) {
         },
     });
 
+    var bannerToptwo = new Swiper('.image-banner-slider-simple', {
+        spaceBetween: 10,
+        slidesPerView: 1.1,
+        centeredSlides: true,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        autoplay: {
+            delay: 5000,
+        },
+    });
+
+    var bannerToptwo = new Swiper('.image-banner-slider-wavy', {
+        spaceBetween: 10,
+        slidesPerView: 1.1,
+        centeredSlides: true,
+        loop: true,
+        loopedSlides: 5, //looped slides should be the same
+        autoplay: {
+            delay: 5000,
+        },
+    });
+
     var svgSwiper = new Swiper('.svg-swiper-container', {
         // Optional parameters
         loop: false,
@@ -162,6 +184,26 @@ jQuery(document).ready(function ($) {
         pagination: {
             el: '.swiper-pagination',
         },
+    });
+
+    var featureProducts = new Swiper('.feature-swiper-container', {
+        //direction: 'vertical',
+        //effect: 'coverflow',
+        grabCursor: true,
+        //centeredSlides: true,
+        slidesPerView: 3,
+        initialSlide: 1,
+        loop: true,
+        // width: 300,
+        //height: 350,
+        //direction: 'vertical',
+        // coverflowEffect: {
+        //     rotate: 50,
+        //     stretch: 0,
+        //     depth: 100,
+        //     modifier: 1,
+        //     slideShadows: true,
+        // },
     });
 
 
@@ -373,17 +415,29 @@ jQuery(document).ready(function ($) {
 
     })
 
+    const body = document.body;
+    const scrollUp = "scroll-up";
+    const scrollDown = "scroll-down";
+    let lastScroll = 0;
 
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll <= 0) {
+            body.classList.remove(scrollUp);
+            return;
+        }
 
-     $(".c-compare__placement").on('touchstart','#addNewProductModal', function(){
-         $("#addNewProductModal").addClass("show");
-     });
-     $(".c-compare__btn-remove").on('touchstart','#addNewProductModal', function(){
-         $("#addNewProductModal").removeClass("show");
-     });
-
-
-
+        if (currentScroll > lastScroll && !body.classList.contains(scrollDown)) {
+            // down
+            body.classList.remove(scrollUp);
+            body.classList.add(scrollDown);
+        } else if (currentScroll < lastScroll && body.classList.contains(scrollDown)) {
+            // up
+            body.classList.remove(scrollDown);
+            body.classList.add(scrollUp);
+        }
+        lastScroll = currentScroll;
+    });
 
 
 });

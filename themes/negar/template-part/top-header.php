@@ -3,24 +3,15 @@
 }
 global $avn_negar;
 
-if ($avn_negar['pre_loader']=='1'){?>
+if ($avn_negar['pre_loader']=='1'){ ?>
     <!-- Preloader-->
     <div class="preloader" id="preloader">
-   <?php  if($avn_negar['pre_loader_layout']=='1'){ ?>
-        <div id="ngr-preloader">
-        </div>
-        <?php } else{ ?>
-        <div>
-            <?php
-            get_template_part( 'template-part/preload/layout',$avn_negar['pre_loader_layout'] );
-            ?>
-        </div>
-        <?php } ?>
+        <div id="ngr-preloader"></div>
     </div>
 <?php } ?>
 
 <!-- Header Area-->
-<div class="header-area" id="headerArea">
+<header class="header-area" id="headerArea">
 
     <div class="container h-100 d-flex align-items-center justify-content-between">
         <!-- Navbar Toggler-->
@@ -105,5 +96,5 @@ if ($avn_negar['pre_loader']=='1'){?>
             </form>
 		<?php }
 	} ?>
-</div>
+</header>
 

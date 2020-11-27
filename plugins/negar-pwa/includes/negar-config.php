@@ -124,11 +124,23 @@ Redux::setSection( $opt_name, array(
 			)
 		),
         array(
+            'id'       => 'slider_slection_mode',
+            'type'     => 'select',
+            'title'   => 'طرح اسلایدر بنرها',
+            'subtitle' => 'در این قسمت می توانید طرح اسلایدر بنرها را مشخص کنید.',
+            'options'  => array(
+                'smiple_mode' => 'حالت ساده',
+                'navigation_mode' => 'حالت نقاط ناوبری',
+                'wavy_mode' => 'حالت موج دار',
+            ),
+            'default'  => 'wavy_mode',
+        ),
+        array(
             'id'       => 'banner_title_activation',
             'type'     => 'checkbox',
-            'title'    => 'فعال سازی عنوان اسلایدر',
-            'subtitle' => 'با فعال سازی این قسمت عنوان وارد شده برای اسلایدر در وبسایت خواهد شد.',
-            'default'  => '1'// 1 = on | 0 = off
+            'title'    => 'استفاده از اسلایدر ساده',
+            'subtitle' => 'با فعال سازی این قسمت عنوان وارد شده برای اسلایدر در وبسایت نمایش داده نخواهد شد.',
+            'default'  => '0'// 1 = on | 0 = off
         ),
 		array(
 			'id'          => 'svg_slider',
@@ -256,6 +268,13 @@ Redux::setSection( $opt_name, array(
 			'subtitle' => 'با تنظیم و مقدار دهی این فیلد آدرس ویز فروشگاهتان در فوتر نمایش داده می شود',
 			'default'  => ''
 		),
+        array(
+            'id'       => 'copy_right_box',
+            'type'     => 'text',
+            'title'    => 'کپی رایت',
+            'subtitle' => 'متن وارد شده به عنوان کپی رایت فروشگاه شما در انتهای فوتر قرار خواهد گرفت',
+            'default'  => 'تمامی حقوق برای آوین طرح محفوط است',
+        ),
 	)
 ) );
 
@@ -363,9 +382,10 @@ function get_woo_category() {
 	$out['newest-product-slider'] = '<p id="newest-slider-svg"></p>اسلایدر جدیدترین محصولات';
 	$out['featured-product-slider'] = '<p id="newest-slider-svg"></p>اسلایدر محصولات ویژه';
 	$out['offer-product-slider']  = '<p id="sale-slider-svg"></p>اسلایدر محصولات تخفیف خورده زماندار';
-	$out['best-product-slider']  = '<p id="sale-slider-svg"></p>اسلایدر پرفروش ترین محصولات';
-	$out['rate-product-slider']  = '<p id="sale-slider-svg"></p>اسلایدر محبوب ترین محصولات';
+	$out['best-product-slider']   = '<p id="sale-slider-svg"></p>اسلایدر پرفروش ترین محصولات';
+	$out['rate-product-slider']   = '<p id="sale-slider-svg"></p>اسلایدر محبوب ترین محصولات';
 	$out['sale-product']          = '<p id="sale-slider-svg"></p>اسلایدر محصولات تخفیف خورده';
+	$out['last-visited-product']  = '<p id="sale-slider-svg"></p>مارکویی آخرین محصولات بازدید شده';
 	$out['price-list']            = '<p id="price-list-svg"></p>لیست قیمت';
 	$out['category-slider']       = '<p id="price-list-svg"></p>اسلایدر دسته بندی';
 	$out['first-widget']          = '<p id="price-list-svg"></p>موقعیت ابزارک اول';
@@ -381,6 +401,13 @@ Redux::setSection( $opt_name, array(
 	'desc'   => '',
 	'icon'   => 'el el-brush ',
 	'fields' => array(
+        array(
+            'id'       => 'transparent_activation',
+            'type'     => 'checkbox',
+            'title'    => 'فعال سازی حالت شفاف',
+            'subtitle' => 'با فعال سازی این قسمت بک گراند المان ها شفاف خواهد شد.',
+            'default'  => '1'// 1 = on | 0 = off
+        ),
 		array(
 			'id'       => 'addressbar_color',
 			'type'     => 'color',
@@ -493,17 +520,6 @@ Redux::setSection( $opt_name, array(
             'id'      => 'pre_loader',
             'type'    => 'switch',
             'title'   => 'پیش بارگذار',
-            'default' => true,
-        ),array(
-            'id'      => 'pre_loader_layout',
-            'type'    => 'select',
-            'title'   => 'پیش بارگذار',
-            'options'  =>array(
-                '2' => '2',
-                '3' => '3',
-                '4' => '4',
-                '5' => '5',
-            ),
             'default' => true,
         ),
         array(

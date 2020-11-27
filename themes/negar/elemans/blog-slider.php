@@ -9,17 +9,19 @@ $defaults = array(
 $list = get_posts($defaults);
 
 if (!empty($list)) { ?>
-    <div class="ngr-eleman-title"><span>مقالات</span>وب سایت
+<section>
+    <header class="ngr-eleman-title"><span>مقالات</span>وب سایت
 	<a class="list-link" href="<?= get_permalink(get_option('page_for_posts')) ?>">
             <i class="fal fa-ellipsis-h"></i>
         </a>
-	</div>
+	</header>
     <div class="blog-swiper-container">
         <div class="hscroll-product-slider swiper-wrapper">
             <?php foreach ($list as $key => $post) { ?>
                 <div class="swiper-slide">
                     <div class="entry-meta">
                         <span class="latest_post_date">
+                            <span class="post_year"><?php echo get_the_time('Y', $post->ID); ?></span>
                             <span class="post_day"><?php echo get_the_time('d', $post->ID); ?></span>
                             <span class="post_month"><?php echo get_the_time('F', $post->ID); ?></span>
                         </span>
@@ -50,6 +52,7 @@ if (!empty($list)) { ?>
             <?php } ?>
         </div>
     </div>
+</section>
 <?php } ?>
 
 

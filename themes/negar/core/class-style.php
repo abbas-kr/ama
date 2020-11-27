@@ -32,7 +32,12 @@ if ( ! class_exists( 'AVN_Negar_Theme_Style' ) ) {
 
 			wp_dequeue_script( 'swiper' );
 			wp_dequeue_style( 'swiper' );
-		}
+
+            if (!sw_woocommerce_active() || is_single()){
+                wp_enqueue_script( 'avn-countdown-js', get_template_directory_uri() . '/assets/js/jquery.countdown.min.js', array( 'jquery' ), time(), true );
+            }
+
+        }
 
         public function inline_custom_css()
         {
@@ -89,6 +94,20 @@ if ( ! class_exists( 'AVN_Negar_Theme_Style' ) ) {
             <?php } ?>
 
             }
+
+            <?php if (  $avn_negar['transparent_activation'] == '1' ){ ?>
+                header#headerArea,.footer-nav-area .buttonbar-first,.footer-nav-area .buttonbar-second {
+                backdrop-filter: blur(10px);
+                background-color: #ffffff0f!important;
+                }
+            <?php } ?>
+            <?php if ( is_single() && $avn_negar['transparent_activation'] == '1' ){ ?>
+                .woocommerce-variation-add-to-cart, .summary.entry-summary .woocommerce-variation-add-to-cart, .product-type-simple form.cart {
+                backdrop-filter: blur(10px);
+                background-color: #ffffff0f!important;
+                }
+            <?php } ?>
+
             <?php
 			$buffer = ob_get_clean();
 			$minifiedCSS = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '    ' ), '', $buffer );

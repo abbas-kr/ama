@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) exit; /* negar */ ?>
+<?php if (!defined('ABSPATH')) exit; /* negar */ ?>
 <?php
 
 class Woocommerce_Functions
@@ -18,25 +18,59 @@ class Woocommerce_Functions
         add_filter('woocommerce_cart_item_name', array($this, 'cart_variation_description'), 20, 3);
 
         //add view account button on thank you page
-        add_action( 'woocommerce_thankyou',  array($this, 'view_my_account') , 20 );
+        add_action('woocommerce_thankyou', array($this, 'view_my_account'), 20);
 
         // WooCommerce Rename Checkout Fields
-        add_filter( 'woocommerce_checkout_fields' , array($this, 'custom_rename_wc_checkout_fields') , 1 );
+        add_filter('woocommerce_checkout_fields', array($this, 'custom_rename_wc_checkout_fields'), 1);
 
         $this->ngr_single_product_hook();
         $this->ngr_archive_product_hook();
 
-        add_action('woocommerce_account_dashboard' , array($this , 'show_last_order_in_dashboard'));
+        add_action('woocommerce_account_dashboard', array($this, 'show_last_order_in_dashboard'));
 
-        add_filter('woocommerce_get_catalog_ordering_args', array($this,'am_woocommerce_catalog_orderby') , 9999);
-        add_filter('posts_clauses', array($this,'order_by_stock_status') , 9999);
+        add_filter('woocommerce_get_catalog_ordering_args', array($this, 'am_woocommerce_catalog_orderby'), 9999);
+        add_filter('posts_clauses', array($this, 'order_by_stock_status'), 9999);
 
         //add woocommerce_breadcrumb
-        add_action( 'woocommerce_after_single_product',  array($this, 'avn_single_product_breadcrumbs') , 20 );
+        add_action('woocommerce_after_single_product', array($this, 'avn_single_product_breadcrumbs'), 20);
 
         //remove up sells products
-        remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+        remove_action('woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15);
 
+        add_action('template_redirect', array($this, 'avn_wc_track_product_view'), 20);
+
+
+    }
+
+    public function avn_wc_track_product_view()
+    {
+        if (!is_singular('product')) {
+            return;
+        }
+
+        global $post;
+
+        if (empty($_COOKIE['avn_woocommerce_recently_viewed'])) { // @codingStandardsIgnoreLine.
+            $viewed_products = array();
+        } else {
+            $viewed_products = wp_parse_id_list((array)explode('|', wp_unslash($_COOKIE['avn_woocommerce_recently_viewed']))); // @codingStandardsIgnoreLine.
+        }
+
+        // Unset if already in viewed products list.
+        $keys = array_flip($viewed_products);
+
+        if (isset($keys[$post->ID])) {
+            unset($viewed_products[$keys[$post->ID]]);
+        }
+
+        $viewed_products[] = $post->ID;
+
+        if (count($viewed_products) > 15) {
+            array_shift($viewed_products);
+        }
+
+        // Store for session only.
+        wc_setcookie('avn_woocommerce_recently_viewed', implode('|', $viewed_products));
     }
 
     public function avn_single_product_breadcrumbs()
@@ -44,13 +78,15 @@ class Woocommerce_Functions
         woocommerce_breadcrumb();
     }
 
-    function am_woocommerce_catalog_orderby( $args ) {
+    function am_woocommerce_catalog_orderby($args)
+    {
         $args['orderby'] = 'date';
         $args['order'] = 'desc';
         return $args;
     }
 
-    function order_by_stock_status($posts_clauses) {
+    function order_by_stock_status($posts_clauses)
+    {
         global $wpdb;
         // only change query on WooCommerce loops
         if (is_woocommerce() && (is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy())) {
@@ -62,7 +98,8 @@ class Woocommerce_Functions
     }
 
     // Change placeholder and label text
-    public function custom_rename_wc_checkout_fields( $fields ) {
+    public function custom_rename_wc_checkout_fields($fields)
+    {
 
         unset($fields['billing']['billing_address_2']);
         unset($fields['billing']['billing_company']);
@@ -70,70 +107,93 @@ class Woocommerce_Functions
         return $fields;
     }
 
-    public function show_last_order_in_dashboard() {
+    public function show_last_order_in_dashboard()
+    {
 
-        woocommerce_account_orders( 1 );
+        woocommerce_account_orders(1);
 
     }
 
     public function ngr_single_product_hook()
     {
-        if (class_exists('TM_WC_Compare_Wishlist')){
+        if (class_exists('TM_WC_Compare_Wishlist')) {
 
             //Remove Wish & Compare
-            remove_action( 'woocommerce_product_thumbnails', 'tm_woocompare_add_button_single', 35 );
-            remove_action( 'woocommerce_product_thumbnails', 'tm_woowishlist_add_button_single', 35 );
+            remove_action('woocommerce_product_thumbnails', 'tm_woocompare_add_button_single', 35);
+            remove_action('woocommerce_product_thumbnails', 'tm_woowishlist_add_button_single', 35);
 
             //Add Wish & Compare
-            add_action( 'woocommerce_before_single_product_summary', 'tm_woowishlist_add_button_single', 5 );
-            add_action( 'woocommerce_before_single_product_summary', 'tm_woocompare_add_button_single', 5 );
+            add_action('woocommerce_before_single_product_summary', 'tm_woowishlist_add_button_single', 5);
+            add_action('woocommerce_before_single_product_summary', 'tm_woocompare_add_button_single', 5);
 
         }
 
+        //add countdown element in single page
+        add_action('woocommerce_before_single_product_summary', array($this,'ngr_countdown_element'), 5);
+
         //add sharing button
-        add_action( 'woocommerce_before_single_product_summary', array($this , 'ngr_share_button') , 5 );
+        add_action('woocommerce_before_single_product_summary', array($this, 'ngr_share_button'), 5);
 
         // add Close Button For Madal tabs
-        add_action( 'woocommerce_product_after_tabs', array($this , 'modal_tabs_close_button' ), 10 );
+        add_action('woocommerce_product_after_tabs', array($this, 'modal_tabs_close_button'), 10);
 
 
         remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
         remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
         remove_action('woocommerce_review_before', 'woocommerce_review_display_gravatar', 10);
 
-        add_action('woocommerce_single_product_summary', array($this, 'ngr_star_rating') , 33);
+        add_action('woocommerce_single_product_summary', array($this, 'ngr_star_rating'), 33);
 
         if (class_exists('TCW')) {
-            add_action('woocommerce_single_product_summary', array($this, 'ngr_zanbi_custom_attribute') , 34);
-            add_filter('remove_modal_in_negar' , '__return_false' );
+            add_action('woocommerce_single_product_summary', array($this, 'ngr_zanbi_custom_attribute'), 34);
+            add_filter('remove_modal_in_negar', '__return_false');
         }
 
-        add_action('woocommerce_single_product_summary', array($this, 'ngr_short_description') , 35);
+        add_action('woocommerce_single_product_summary', array($this, 'ngr_short_description'), 35);
     }
 
-    public function ngr_archive_product_hook() {
+    public function ngr_countdown_element()
+    {
+        global $product;
+        $product->get_id();
+
+        $id = 'sw_countdown_' . rand() . time();
+        $start_time = get_post_meta($product->get_id(), '_sale_price_dates_from', true);
+        $countdown_time = get_post_meta($product->get_id(), '_sale_price_dates_to', true);
+        ?>
+        <div class="contdown-sale countdown-left">
+            <div class="product-countdown"
+                 data-starttime="<?php echo esc_attr($start_time); ?>"
+                 data-cdtime="<?php echo esc_attr($countdown_time); ?>"
+                 data-id="<?php echo 'product_' . $id . $product->get_id(); ?>"></div>
+        </div>
+        <?php
+    }
+
+    public function ngr_archive_product_hook()
+    {
 
         //archive Filter
         add_action('woocommerce_after_main_content', array($this, 'shop_modal_product_filter'));
 
         // Add top Category of Archive page
-        add_action( 'woocommerce_before_main_content',  array($this, 'ngr_product_subcategories') , 20 );
+        add_action('woocommerce_before_main_content', array($this, 'ngr_product_subcategories'), 20);
 
         //Remove archive sidebar
         remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 
         //Remove Compare button
-        remove_action( 'woocommerce_after_shop_loop_item', 'tm_woocompare_add_button_loop', 12 );
+        remove_action('woocommerce_after_shop_loop_item', 'tm_woocompare_add_button_loop', 12);
 
         //order By Stock
-        add_filter( 'woocommerce_get_catalog_ordering_args', array($this, 'ngr_first_sort_by_stock_amount'), 99 );
+        add_filter('woocommerce_get_catalog_ordering_args', array($this, 'ngr_first_sort_by_stock_amount'), 99);
 
         //Remove star rating
-        remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
-        remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count',  20);
+        remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
+        remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count', 20);
 
         // Add top Category of Archive page
-        add_action( 'woocommerce_before_shop_loop',  array($this, 'ngr_grid_list_swich_button') , 20 );
+        add_action('woocommerce_before_shop_loop', array($this, 'ngr_grid_list_swich_button'), 20);
 
     }
 
@@ -154,15 +214,16 @@ class Woocommerce_Functions
 
         if (!empty($product_item) && $product_item->is_type('variation')) {
             $result = $product_item->attribute_summary;
-            $result2 = str_replace('::',':',$result);
-            $result3 = str_replace(',','<br>',$result2);
-            return '<a>'.$product_item->get_title().'</a><p class="product-attr">'. $result3 .'</p>';
+            $result2 = str_replace('::', ':', $result);
+            $result3 = str_replace(',', '<br>', $result2);
+            return '<a>' . $product_item->get_title() . '</a><p class="product-attr">' . $result3 . '</p>';
         } else
             return $name;
     }
 
-    public function view_my_account() {
-        echo '<a class="view-account-btn" href="'.get_permalink(get_option('woocommerce_myaccount_page_id')).'">حساب کاربری</a>';
+    public function view_my_account()
+    {
+        echo '<a class="view-account-btn" href="' . get_permalink(get_option('woocommerce_myaccount_page_id')) . '">حساب کاربری</a>';
     }
 
     public function ngr_grid_list_swich_button()
@@ -174,7 +235,8 @@ class Woocommerce_Functions
 
     }
 
-    public function ngr_first_sort_by_stock_amount( $args ) {
+    public function ngr_first_sort_by_stock_amount($args)
+    {
         $args['orderby'] = 'meta_value';
         $args['order'] = 'ASC';
         $args['meta_key'] = '_stock_status';
@@ -229,17 +291,18 @@ class Woocommerce_Functions
         <?php endif;
     }
 
-    public function ngr_share_button() {
+    public function ngr_share_button()
+    {
         global $product;
         ?>
         <button class="button" id="ngr-share"><i class="fal fa-share-alt"></i></button>
         <script>
-            window.addEventListener('load', function() {
-                document.getElementById('ngr-share').addEventListener('click', function() {
+            window.addEventListener('load', function () {
+                document.getElementById('ngr-share').addEventListener('click', function () {
                     navigator.share({
-                        title: '<?php echo get_bloginfo( 'name' ); ?>',
+                        title: '<?php echo get_bloginfo('name'); ?>',
                         text: '<?php echo $product->get_title(); ?>',
-                        url: '<?php echo wp_get_shortlink( $product->get_id() ); ?>'
+                        url: '<?php echo wp_get_shortlink($product->get_id()); ?>'
                     });
                 });
             });
@@ -262,26 +325,28 @@ class Woocommerce_Functions
 
         $rating_count = $product->get_rating_count();
         $review_count = $product->get_review_count();
-        $average      = $product->get_average_rating();
+        $average = $product->get_average_rating();
 
         echo '<div class="single-side-box">';
-        if ( $rating_count > 0 ) { ?>
+        if ($rating_count > 0) { ?>
 
             <div class="woocommerce-product-rating">
-                <?php echo wc_get_rating_html( $average, $rating_count ); // WPCS: XSS ok. ?>
-                <?php if ( comments_open() ) : ?>
+                <?php echo wc_get_rating_html($average, $rating_count); // WPCS: XSS ok. ?>
+                <?php if (comments_open()) : ?>
                     <?php //phpcs:disable ?>
-                    <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
+                    <a href="#reviews" class="woocommerce-review-link"
+                       rel="nofollow">(<?php printf(_n('%s customer review', '%s customer reviews', $review_count, 'woocommerce'), '<span class="count">' . esc_html($review_count) . '</span>'); ?>
+                        )</a>
                     <?php // phpcs:enable ?>
                 <?php endif ?>
             </div>
 
-        <?php } else{ ?>
+        <?php } else { ?>
             <div class="star-rating"></div>
             <a href="#reviews" class="woocommerce-review-link" rel="nofollow">بدون امتیاز</a>
         <?php }
 
-        if($product->is_in_stock()) {
+        if ($product->is_in_stock()) {
             echo '<p class="is-in-stock"><i class="fal fa-check-circle"></i> موجود</p>';
         } else {
             echo '<p class="out-of-stock"><i class="fal fa-times"></i> ناموجود</p>';
@@ -289,7 +354,6 @@ class Woocommerce_Functions
         echo '</div>';
 
     }
-
 
 
     public function modal_tabs_close_button()
@@ -320,8 +384,8 @@ class Woocommerce_Functions
 
     public function ngr_zanbi_custom_attribute()
     {
-        $product_keys = get_post_meta(get_the_ID() , 'avn_product_key_attr', true);
-        if(!empty($product_keys)) {
+        $product_keys = get_post_meta(get_the_ID(), 'avn_product_key_attr', true);
+        if (!empty($product_keys)) {
             echo '<div class="cus-box-style"><div class="title-intro content-red-title">ویژگی‌های کلیدی <span>محصول</span></div><ul class="cus-style">';
             foreach ($product_keys as $product_key) {
                 echo '<li>' . $product_key . '</li>';
