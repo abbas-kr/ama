@@ -27,10 +27,10 @@ $products = new WP_Query( $best_sellers_args );
 
 <?php if ( $products->have_posts() ) { ?>
 <section class="relative-box">
-    <header class="ngr-eleman-titles"><span class="best-product-counter"><?php echo $avn_option['count_product_per_page'] ?></span> محصول پرفروش
+    <header class="ngr-eleman-title"><span class="best-product-counter"><?php echo $avn_option['count_product_per_page'] ?></span> محصول پرفروش
         <span class="topbox-best-product"></span>
     </header>
-    <div class="hscroll-product best-slider-swiper swiper-container" data-slidePerView="1.8">
+    <div class="hscroll-product swiper-container">
         <div class="hscroll-product-slider swiper-wrapper">
 
             <?php while ( $products->have_posts() ) : $products->the_post(); global $product; ?>

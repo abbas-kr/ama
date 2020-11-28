@@ -26,13 +26,12 @@ $products = new WP_Query( $best_sellers_args );
 
 <?php if ( $products->have_posts() ) { ?>
 <section>
-    <header class="ngr-eleman-title">
-        <span>محبوب ترین<strong>محصولات</strong></span>
+    <header class="ngr-eleman-title"><span>محبوب ترین</span>محصولات
         <a class="list-link" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ).'?orderby=date' ?>">
             <i class="fal fa-ellipsis-h"></i>
         </a>
     </header>
-    <div class="hscroll-product swiper-container" data-slidePerView="1.8">
+    <div class="hscroll-product swiper-container">
         <div class="hscroll-product-slider swiper-wrapper">
 
             <?php while ( $products->have_posts() ) : $products->the_post(); global $product; ?>

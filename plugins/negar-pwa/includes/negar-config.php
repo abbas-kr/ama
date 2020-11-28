@@ -406,70 +406,61 @@ Redux::setSection( $opt_name, array(
             'type'     => 'checkbox',
             'title'    => 'فعال سازی حالت شفاف',
             'subtitle' => 'با فعال سازی این قسمت بک گراند المان ها شفاف خواهد شد.',
-            'default'  => '0'// 1 = on | 0 = off
+            'default'  => '1'// 1 = on | 0 = off
         ),
 		array(
 			'id'       => 'addressbar_color',
 			'type'     => 'color',
 			'title'    => 'رنگ آدرس بار',
 			'subtitle' => 'رنگ آدرس بار انتخاب شده در نوار بالایی تلفن همراه نمایش داده خواهد شد',
-            'default'  => '#f94e60'// 1 = on | 0 = off
 		),
 		array(
 			'id'       => 'light_bg',
 			'type'     => 'color',
 			'title'    => 'رنگ بک گراند حالت روز',
 			'subtitle' => 'رنگ انتخاب شده در بک گراند قالب نمایش داده خواهد شد',
-            'default'  => '#ffffff'// 1 = on | 0 = off
 		),
 		array(
 			'id'       => 'light_element_bg',
 			'type'     => 'color',
 			'title'    => 'رنگ بک گراند المان ها در حالت روز',
 			'subtitle' => 'رنگ انتخاب شده در رنگ بک گراند المان های قالب نمایش داده خواهد شد',
-            'default'  => '#ffffff'// 1 = on | 0 = off
 		),
 		array(
 			'id'       => 'text_light',
 			'type'     => 'color',
 			'title'    => 'رنگ متون در حالت روز',
 			'subtitle' => 'رنگ انتخاب شده برای متون المان های قالب نمایش داده خواهد شد',
-            'default'  => '#1d1d1f'// 1 = on | 0 = off
 		),
         array(
             'id'       => 'night_bg',
             'type'     => 'color',
             'title'    => 'رنگ بک گراند حالت شب',
             'subtitle' => 'رنگ انتخاب شده در بک گراند قالب نمایش داده خواهد شد',
-            'default'  => '#1b1f2b'// 1 = on | 0 = off
         ),
         array(
             'id'       => 'night_element_bg',
             'type'     => 'color',
             'title'    => 'رنگ بک گراند المان ها در حالت شب',
             'subtitle' => 'رنگ انتخاب شده در رنگ بک گراند المان های قالب نمایش داده خواهد شد',
-            'default'  => '#1f2433'// 1 = on | 0 = off
         ),
         array(
             'id'       => 'text_night',
             'type'     => 'color',
             'title'    => 'رنگ متون در حالت شب',
             'subtitle' => 'رنگ انتخاب شده برای متون المان های قالب نمایش داده خواهد شد',
-            'default'  => '#ffffff'// 1 = on | 0 = off
         ),
 		array(
 			'id'       => 'primary_color',
 			'type'     => 'color',
 			'title'    => 'رنگ اصلی قالب',
 			'subtitle' => 'رنگ انتخاب شده به عنوان رنگ اصلی قالب درنظر گرفته خواهد شد',
-            'default'  => '#f94e60'// 1 = on | 0 = off
 		),
 		array(
 			'id'       => 'secondry_color',
 			'type'     => 'color',
             'title'    => 'رنگ فرعی قالب',
             'subtitle' => 'رنگ انتخاب شده به عنوان رنگ فرعی قالب درنظر گرفته خواهد شد',
-            'default'  => '#68cc45'// 1 = on | 0 = off
         ),
 	)
 ) );
@@ -529,6 +520,18 @@ Redux::setSection( $opt_name, array(
             'id'      => 'pre_loader',
             'type'    => 'switch',
             'title'   => 'پیش بارگذار',
+            'default' => true,
+        ),
+        array(
+            'id'      => 'pre_loader_layout',
+            'type'    => 'select',
+            'title'   => 'پیش بارگذار',
+            'options'  =>array(
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5',
+            ),
             'default' => true,
         ),
         array(

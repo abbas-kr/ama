@@ -29,13 +29,12 @@ jQuery( function( $ ) {
 
     })
 
-
     $(window).on('load', function() {
         $('.page-builder').on('click', function () {
             $('#redux_save').trigger('click')
             setTimeout(function() {
-                  location.reload();
-             }, 5000);
+                location.reload();
+            }, 5000);
         });
     });
 

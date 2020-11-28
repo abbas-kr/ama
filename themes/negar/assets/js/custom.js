@@ -6,7 +6,7 @@
     var headerArea = $("#headerArea");
     var footerNav = $("#footerNav");
     var blackOverlay = $(".sidenav-black-overlay");
-    
+
     // :: 1.0 Preloader
     suhaWindow.on('load', function () {
         $('#preloader').fadeOut('1000', function () {
@@ -119,32 +119,91 @@ jQuery(document).ready(function ($) {
         },
     });
 
-    $('.swiper-container').each(function() {
+    var svgSwiper = new Swiper('.svg-swiper-container', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 2.7,
+        spaceBetween: 10,
+    });
 
-        // Configuration
-        let slidePerView = $(this).data('slideperview');
-        let brkpnt = {768 : {slidesPerView: 4, spaceBetween: 20}};
-        let slider_autoplay = $(this).data('autoplaydelay');
-        let slider_loop = $(this).data('loop');
-        let slider_pagination = $(this).data('pagination');
+    var categorySwiper = new Swiper('.category-swiper-container', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 1.4,
+        spaceBetween: 10,
+    });
 
+    var productSwiper = new Swiper('.hscroll-product', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 1.8,
+        spaceBetween: 10,
+        margin: 5,
+        on: {
+            imagesReady: function () {
+                // :: 1.0 Preloader
+                $('#preloader').fadeOut('1000', function () {
+                    $(this).remove();
+                });
+            },
+        }
+    });
 
-        let conf_slider 	= {};
+    var blogSwiper = new Swiper('.blog-swiper-container', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 1.2,
+        spaceBetween: 10,
+        margin: 5,
+    });
 
-        conf_slider.slidesPerView = slidePerView;
-        conf_slider.spaceBetween = 10;
-        conf_slider.margin = 5;
-        conf_slider.breakpoints = brkpnt;
-        if(slider_autoplay)
-            conf_slider.autoplay = { delay : slider_autoplay };
+    var brandSwiper = new Swiper('.brand-swiper-container', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 1.8,
+        spaceBetween: 10,
+        margin: 5,
+        autoplay: {
+            delay: 5000,
+        },
+    });
 
-        if(slider_loop)
-            conf_slider.loop = slider_loop;
+    var timerSwiper = new Swiper('.timer-product-slider', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 1.2,
+        spaceBetween: 10,
+        margin: 5,
+    });
 
-        if(slider_pagination)
-            conf_slider.pagination = { el: '.swiper-pagination' };
+    var validationLogoSwiper = new Swiper('.validation-logos-slider', {
+        // Optional parameters
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 10,
+        pagination: {
+            el: '.swiper-pagination',
+        },
+    });
 
-        var slider = new Swiper( this , conf_slider);
+    var featureProducts = new Swiper('.feature-swiper-container', {
+        //direction: 'vertical',
+        //effect: 'coverflow',
+        grabCursor: true,
+        //centeredSlides: true,
+        slidesPerView: 3,
+        initialSlide: 1,
+        loop: true,
+        // width: 300,
+        //height: 350,
+        //direction: 'vertical',
+        // coverflowEffect: {
+        //     rotate: 50,
+        //     stretch: 0,
+        //     depth: 100,
+        //     modifier: 1,
+        //     slideShadows: true,
+        // },
     });
 
 
@@ -314,10 +373,19 @@ jQuery(document).ready(function ($) {
 
 
     let pwa = $('.add-shortcut-btn')
-    if( pwa.data('cookie') === 1)
-        setTimeout(function(){ pwa.removeClass('hidden'); }, 5000);
+    if( pwa.data('cookie') === 0)
+        pwa.addClass('hidden');
 
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+
+    }
+
+    if (/android/i.test(userAgent)) {
+
+    }
 
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
     if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
@@ -370,6 +438,14 @@ jQuery(document).ready(function ($) {
         }
         lastScroll = currentScroll;
     });
+
+    $(".c-compare__placement").on('touchstart','#addNewProductModal', function(){
+        $("#addNewProductModal").addClass("show");
+    });
+    $(".c-compare__btn-remove").on('touchstart','#addNewProductModal', function(){
+        $("#addNewProductModal").removeClass("show");
+    });
+
 
 
 });
