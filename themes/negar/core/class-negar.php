@@ -91,7 +91,7 @@ if (!class_exists('AVN_Negar_Theme')) {
                 }
 
                 ?>
-                <div class="add-shortcut-btn" data-cookie="<?= $set_cookie ?>">
+                <div class="add-shortcut-btn hidden" data-cookie="<?= $set_cookie ?>">
                     <?php
                     if (!empty($avn_negar['favicon']['url'])) {
                         ?>

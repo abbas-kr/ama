@@ -314,19 +314,10 @@ jQuery(document).ready(function ($) {
 
 
     let pwa = $('.add-shortcut-btn')
-    if( pwa.data('cookie') === 0)
-        pwa.addClass('hidden');
+    if( pwa.data('cookie') === 1)
+        setTimeout(function(){ pwa.removeClass('hidden'); }, 5000);
 
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-
-    }
-
-    if (/android/i.test(userAgent)) {
-
-    }
 
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
     if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {

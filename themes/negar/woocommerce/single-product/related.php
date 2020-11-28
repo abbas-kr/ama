@@ -31,7 +31,7 @@ if ( $related_products ) : ?>
 			<h2><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
 
-    <div class="hscroll-product swiper-container">
+    <div class="hscroll-product swiper-container" data-slidePerView="1.8">
         <div class="hscroll-product-slider swiper-wrapper">
 
 		<?php //woocommerce_product_loop_start(); ?>
