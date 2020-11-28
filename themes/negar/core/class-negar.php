@@ -187,19 +187,16 @@ if (!class_exists('AVN_Negar_Theme')) {
                 echo '</div>';
             }
 
+            echo '<div class="footer-image-widget">';
             if (!empty($avn_negar['title_image_widget'])) {
-                echo '<div class="footer-image-widget">';
                 echo '<h4>' . $avn_negar['title_image_widget'] . '</h4>';
-                if (!empty($avn_negar['image_widget'])) {
-                    foreach ($avn_negar['image_widget'] as $image) {
-                        echo '<a href="' . $image['url'] . '"><img src="' . $image['image'] . '"></a>';
-                    }
-                }
-                echo '</div>';
             }
+            foreach ($avn_negar['image_widget'] as $image) {
+                echo '<a href="' . $image['url'] . '"><img src="' . $image['image'] . '"></a>';
+            }
+            echo '</div>';
 
-
-            if ($avn_negar['enamad_logo'] || $avn_negar['samandehi_logo'] || $avn_negar['melat_bank_logo']) { ?>
+            if (!empty($avn_negar['enamad_logo']) || !empty($avn_negar['samandehi_logo']) || !empty($avn_negar['melat_bank_logo'])) { ?>
                 <div class="validationlogos">
                     <h4>مجوزها</h4>
                     <div class="validation-logos-slider">
@@ -245,7 +242,7 @@ if (!class_exists('AVN_Negar_Theme')) {
                     echo '<div class="footer-phone-info"><h4>اطلاعات تماس</h4><div class="phones">';
                     foreach ($avn_negar['menu_contact'] as $number) {
                         $formated_number = explode("-", $number);
-                        echo '<div class="box-phone"><i class="fal fa-phone"></i><a href="tel:' . $formated_number[0] . $formated_number[1] . '"><span class="phone_code">' . $formated_number[0] . '</span>' . $formated_number[1] . '</a></div>';
+                        echo '<div class="box-phone"><a href="tel:' . $formated_number[0] . $formated_number[1] . '"><i class="fal fa-phone"></i><span class="phone_code">' . $formated_number[0] . '</span>' . $formated_number[1] . '</a></div>';
                     }
                     echo '</div></div>';
                 }
@@ -254,7 +251,7 @@ if (!class_exists('AVN_Negar_Theme')) {
 
             <?php
             if (!empty($avn_negar['about_us_footer'])) {
-                echo '<span class="about-us-footer">' . $avn_negar['about_us_footer'] . '</span>';
+                echo '<div class="about-us-footer"><span>' . $avn_negar['about_us_footer'] . '</span></div>';
             }
             ?>
 
@@ -280,7 +277,6 @@ if (!class_exists('AVN_Negar_Theme')) {
                 echo '<span class="copy-right-footer">' . $avn_negar['copy_right_box'] . '</span>';
             }
             ?>
-
 
 
             <?php

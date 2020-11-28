@@ -27,7 +27,7 @@ $products = new WP_Query( $best_sellers_args );
 <?php if ( $products->have_posts() ) { ?>
 <section>
     <header class="ngr-eleman-title"><span>محبوب ترین</span>محصولات
-        <a class="list-link" href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ).'?orderby=date' ?>">
+        <a class="list-link" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ).'?orderby=date' ?>">
             <i class="fal fa-ellipsis-h"></i>
         </a>
     </header>

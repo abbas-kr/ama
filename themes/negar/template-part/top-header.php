@@ -55,7 +55,7 @@ if ($avn_negar['pre_loader']=='1'){ ?>
 
         <div class="top-header-icon">
 			<?php
-			if ( is_account_page() ) {
+			if ( class_exists( 'WooCommerce' ) && is_account_page() ) {
 				require NGR_PATH . '/template-part/toolbar-icon/back.php';
 			} else {
 
