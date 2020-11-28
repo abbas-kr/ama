@@ -34,10 +34,9 @@ $products = new WP_Query( $new_args );
 <section>
     <header class="ngr-eleman-title">
        <span>جدیدترین<strong>محصولات</strong></span>
-        <a class="list-link" href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ).'?orderby=date' ?>">
+        <a class="list-link" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ).'?orderby=date' ?>">
             <i class="fal fa-ellipsis-h"></i>
         </a>
-
     </header>
 
     <div class="hscroll-product swiper-container" data-slidePerView="1.8">

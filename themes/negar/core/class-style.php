@@ -32,6 +32,7 @@ if ( ! class_exists( 'AVN_Negar_Theme_Style' ) ) {
 
 			wp_dequeue_script( 'swiper' );
 			wp_dequeue_style( 'swiper' );
+            wp_dequeue_style( 'wc-block-style' );
 
             if (!sw_woocommerce_active() || is_single()){
                 wp_enqueue_script( 'avn-countdown-js', get_template_directory_uri() . '/assets/js/jquery.countdown.min.js', array( 'jquery' ), time(), true );
@@ -119,13 +120,3 @@ if ( ! class_exists( 'AVN_Negar_Theme_Style' ) ) {
 
 }
 new AVN_Negar_Theme_Style();
-
-add_action( 'template_redirect', 'ngr_setcookie', 20 );
-
-function ngr_setcookie (){
-
-	if (!isset($_COOKIE['PWACookie']) && is_front_page()) {
-		wc_setcookie('PWACookie', 'PWA', time() + (86400 * 10));
-	}
-
-}
