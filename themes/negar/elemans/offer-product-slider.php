@@ -27,8 +27,9 @@ $id = 'sw_countdown_' . rand() . time();
 
 <?php if ($products->have_posts()) { ?>
 <section>
-    <header class="ngr-eleman-title"><span>پیشنهاد</span>شگفت انگیز</header>
-    <div class="timer-product-slider swiper-container">
+    <header class="ngr-eleman-title"><span>پیشنهاد<strong>شگفت انگیز</strong></span>
+    </header>
+    <div class="timer-product-slider swiper-container" data-slideperview="1.2">
         <div class="swiper-wrapper">
 
             <?php while ($products->have_posts()) : $products->the_post();

@@ -119,91 +119,32 @@ jQuery(document).ready(function ($) {
         },
     });
 
-    var svgSwiper = new Swiper('.svg-swiper-container', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 2.7,
-        spaceBetween: 10,
-    });
+    $('.swiper-container').each(function() {
 
-    var categorySwiper = new Swiper('.category-swiper-container', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 1.4,
-        spaceBetween: 10,
-    });
+        // Configuration
+        let slidePerView = $(this).data('slideperview');
+        let brkpnt = {768 : {slidesPerView: 4, spaceBetween: 20}};
+        let slider_autoplay = $(this).data('autoplaydelay');
+        let slider_loop = $(this).data('loop');
+        let slider_pagination = $(this).data('pagination');
 
-    var productSwiper = new Swiper('.hscroll-product', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 1.8,
-        spaceBetween: 10,
-        margin: 5,
-        on: {
-            imagesReady: function () {
-                // :: 1.0 Preloader
-                $('#preloader').fadeOut('1000', function () {
-                    $(this).remove();
-                });
-            },
-        }
-    });
 
-    var blogSwiper = new Swiper('.blog-swiper-container', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 1.2,
-        spaceBetween: 10,
-        margin: 5,
-    });
+        let conf_slider 	= {};
 
-    var brandSwiper = new Swiper('.brand-swiper-container', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 1.8,
-        spaceBetween: 10,
-        margin: 5,
-        autoplay: {
-            delay: 5000,
-        },
-    });
+        conf_slider.slidesPerView = slidePerView;
+        conf_slider.spaceBetween = 10;
+        conf_slider.margin = 5;
+        conf_slider.breakpoints = brkpnt;
+        if(slider_autoplay)
+            conf_slider.autoplay = { delay : slider_autoplay };
 
-    var timerSwiper = new Swiper('.timer-product-slider', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 1.2,
-        spaceBetween: 10,
-        margin: 5,
-    });
+        if(slider_loop)
+            conf_slider.loop = slider_loop;
 
-    var validationLogoSwiper = new Swiper('.validation-logos-slider', {
-        // Optional parameters
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 10,
-        pagination: {
-            el: '.swiper-pagination',
-        },
-    });
+        if(slider_pagination)
+            conf_slider.pagination = { el: '.swiper-pagination' };
 
-    var featureProducts = new Swiper('.feature-swiper-container', {
-        //direction: 'vertical',
-        //effect: 'coverflow',
-        grabCursor: true,
-        //centeredSlides: true,
-        slidesPerView: 3,
-        initialSlide: 1,
-        loop: true,
-        // width: 300,
-        //height: 350,
-        //direction: 'vertical',
-        // coverflowEffect: {
-        //     rotate: 50,
-        //     stretch: 0,
-        //     depth: 100,
-        //     modifier: 1,
-        //     slideShadows: true,
-        // },
+        var slider = new Swiper( this , conf_slider);
     });
 
 

@@ -7,8 +7,8 @@ $categories = get_terms(array(
 ));
 if (!empty($categories)) { ?>
 <section>
-    <header class="ngr-eleman-title"><span>دسته بندی</span>محصولات</header>
-    <div class="hscroll-category-product category-swiper-container">
+    <header class="ngr-eleman-title"><span>دسته بندی<strong>محصولات</strong></span></header>
+    <div class="hscroll-category-product category-swiper-container swiper-container" data-slideperview="1.8">
         <div class="swiper-wrapper">
             <?php foreach ($categories as $category) { ?>
                 <div class="swiper-slide">

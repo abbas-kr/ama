@@ -10,12 +10,12 @@ $list = get_posts($defaults);
 
 if (!empty($list)) { ?>
 <section>
-    <header class="ngr-eleman-title"><span>مقالات</span>وب سایت
-	<a class="list-link" href="<?= get_permalink(get_option('page_for_posts')) ?>">
+    <header class="ngr-eleman-title"><span>مقالات<strong>وب سایت</strong></span>
+        <a class="list-link" href="<?= get_permalink(get_option('page_for_posts')) ?>">
             <i class="fal fa-ellipsis-h"></i>
         </a>
 	</header>
-    <div class="blog-swiper-container">
+    <div class="swiper-container" data-slidePerView="1.2">
         <div class="hscroll-product-slider swiper-wrapper">
             <?php foreach ($list as $key => $post) { ?>
                 <div class="swiper-slide">

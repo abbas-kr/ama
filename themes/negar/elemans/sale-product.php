@@ -30,8 +30,10 @@ $products = new WP_Query( $sale_args );
 
 <?php if ( $products->have_posts() ) { ?>
 <section>
-    <header class="ngr-eleman-title"><span>محصولات</span>تخفیف خورده</header>
-    <div class="hscroll-product swiper-container">
+    <header class="ngr-eleman-title">
+        <span>محصولات<strong>تخفیف خورده</strong></span>
+    </header>
+    <div class="hscroll-product swiper-container" data-slidePerView="1.8">
         <div class="hscroll-product-slider swiper-wrapper">
             <?php while ( $products->have_posts() ) : $products->the_post(); global $product; ?>
                 <div class="swiper-slide">

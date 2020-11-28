@@ -9,7 +9,7 @@ if (empty($viewed_products)) {
 $i = 0;
 ?>
 <section>
-    <header class="ngr-eleman-title"><span>آخرین</span>محصولات بازدید شده</header>
+    <header class="ngr-eleman-title"><span>آخرین<strong>محصولات بازدید شده</strong></span></header>
     <div class="avn-marquee">
         <?php ngr_svg('marquee'); ?>
         <div>

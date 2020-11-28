@@ -199,7 +199,7 @@ if (!class_exists('AVN_Negar_Theme')) {
             if (!empty($avn_negar['enamad_logo']) || !empty($avn_negar['samandehi_logo']) || !empty($avn_negar['melat_bank_logo'])) { ?>
                 <div class="validationlogos">
                     <h4>مجوزها</h4>
-                    <div class="validation-logos-slider">
+                    <div class="validation-logos-slider swiper-container" data-slidePerView="1" data-loop="true" data-pagination="1">
                         <div class="swiper-wrapper">
                             <?php if (!empty($avn_negar['enamad_logo'])) { ?>
                                 <div class="footer-images swiper-slide">
